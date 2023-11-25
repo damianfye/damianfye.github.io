@@ -9,7 +9,7 @@
         margin: 0;
         padding: 0;
         font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #440f2f, #223b49, #101d4e, #64660a); /* Darker gradient */
+        background: linear-gradient(135deg, #0D0D0D, #434343); /* Darker gradient */
         color: #fff;
         text-align: center;
         display: flex;
@@ -86,10 +86,9 @@
 <body>
     <div class="fireworks"></div>
 
-    <h1>HB!</h1>
+    <h1>Привет, Алина! Люблю тебя и желаю тебе счастливого дня рождения, приятного дня!</h1>
     <div id="ageDisplay">---</div>
-    <button id="confettiButton">Celebrate!</button>
-    <button id="fireworksButton">Celebrate MORE!</button>
+    <button id="confettiButton">праздновать!</button>
 
     <!-- Confetti script -->
     <script type="module">
@@ -98,8 +97,8 @@
         const confettiButton = document.getElementById('confettiButton');
         confettiButton.addEventListener('click', () => {
             confetti({
-                particleCount: 150,
-                spread: 70,
+                particleCount: 500,
+                spread: 360,
                 origin: { y: 0.35 }
 
             });
@@ -111,22 +110,7 @@
         // Initialize the fireworks instance outside of the event listener
         const container = document.querySelector('.fireworks');
         const fireworks = new Fireworks.default(container);
-
-        let fireworksActive = false;
-
-        const fireworksButton = document.getElementById('fireworksButton');
-        fireworksButton.addEventListener('click', () => {
-            // Toggle fireworks start/stop
-            if (!fireworksActive) {
-                fireworks.start();
-                fireworksActive = true;
-                fireworksButton.textContent = "Celebrate less";
-            } else {
-                fireworks.stop();
-                fireworksActive = false;
-                fireworksButton.textContent = "Celebrate MORE!";
-            }
-        });
+        fireworks.start();
     </script>
 
     <script>
