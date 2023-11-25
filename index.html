@@ -9,7 +9,7 @@
         margin: 0;
         padding: 0;
         font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #0D0D0D, #434343); /* Darker gradient */
+        background: linear-gradient(135deg, #0D0D0D, #222222); /* Darker gradient */
         color: #fff;
         text-align: center;
         display: flex;
@@ -86,9 +86,9 @@
 <body>
     <div class="fireworks"></div>
 
-    <h1>Привет, Алина! Люблю тебя и желаю тебе счастливого дня рождения, приятного дня!</h1>
+    <h1>С днем рождения, Алина! Желаю тебе дня, полного счастья, и года, полного радости ❤️❤️❤️</h1>
     <div id="ageDisplay">---</div>
-    <button id="confettiButton">праздновать!</button>
+    <button id="confettiButton">Празднуй!</button>
 
     <!-- Confetti script -->
     <script type="module">
@@ -138,12 +138,13 @@
                 months += 12;
                 years--;
             }
-            const yearsFormatted = `${years}Y`; // Abbreviated years
-            const monthsFormatted = `${String(months).padStart(2, '0')}M`; // Two-digit months
-            const daysFormatted = `${String(days).padStart(2, '0')}D`; // Two-digit days
-            const timeFormatted = `${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M ${String(seconds).padStart(2, '0')}S`;
+            const yearsFormatted = `${years}год`; // Year in Russian
+            const monthsFormatted = `${String(months).padStart(2, '0')}м.`; // Two-digit months in Russian
+            const daysFormatted = `${String(days).padStart(2, '0')}д.`; // Two-digit days in Russian
+            const timeFormatted = `${String(hours).padStart(2, '0')}ч. ${String(minutes).padStart(2, '0')}мин. ${String(seconds).padStart(2, '0')}с.`; // Hours, Minutes, Seconds in Russian
             document.getElementById('ageDisplay').innerText =
-                `${yearsFormatted} ${monthsFormatted} ${daysFormatted} ${timeFormatted}`;
+            `${yearsFormatted} ${monthsFormatted} ${daysFormatted} ${timeFormatted}`;
+
         }
         // Update the age display every second
         updateAgeDisplay()
