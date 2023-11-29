@@ -88,7 +88,7 @@
 
     <h1>С днем рождения, Алина! Желаю тебе дня, полного счастья, и года, полного радости ❤️❤️❤️</h1>
     <div id="ageDisplay">---</div>
-    <button id="confettiButton">Празднуй!</button>
+    <button id="confettiButton">Нажми чтобы праздновать!</button>
 
     <!-- Confetti script -->
     <script type="module">
@@ -149,9 +149,6 @@ const daysFormatted = `${String(days).padStart(2, '0')} д.`;
 const timeFormatted = `${String(hours).padStart(2, '0')} ч. ${String(minutes).padStart(2, '0')} мин. ${String(seconds).padStart(2, '0')} с.`;
 document.getElementById('ageDisplay').innerText =
     `${yearsFormatted} ${monthsFormatted} ${daysFormatted} ${timeFormatted}`;
-
-
-        }
         // Update the age display every second
         updateAgeDisplay()
         setInterval(updateAgeDisplay, 1000);
