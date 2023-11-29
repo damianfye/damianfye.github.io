@@ -114,47 +114,41 @@
     </script>
 
     <script>
-        function updateAgeDisplay(){
-const birthDate = new Date('1998-11-30'); // Birth date
-const now = new Date();
+        function updateAgeDisplay() {
+            const birthDate = new Date('1998-11-30'); // Replace with her actual birth date
+            const now = new Date();
+            // Calculate years, months, days, hours, minutes, and seconds
+            let years = now.getFullYear() - birthDate.getFullYear();
+            let months = now.getMonth() - birthDate.getMonth();
+            let days = now.getDate() - birthDate.getDate();
+            let hours = now.getHours() - birthDate.getHours();
+            let minutes = now.getMinutes() - birthDate.getMinutes();
+            let seconds = now.getSeconds() - birthDate.getSeconds();
+            // Adjust the calculation for months and days
+            if (seconds < 0) {seconds += 60;minutes--;}
+            if (minutes < 0) {minutes += 60;hours--;}
+            if (hours < 0) {hours += 24;days--;}
+            if (days < 0) {
+                months--;
+                let previousMonth = (now.getMonth() - 1 + 12) % 12;
+                let daysInPreviousMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += daysInPreviousMonth;
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+            const yearsFormatted = `${years}год`; // Year in Russian
+            const monthsFormatted = `${String(months).padStart(2, '0')}м.`; // Two-digit months in Russian
+            const daysFormatted = `${String(days).padStart(2, '0')}д.`; // Two-digit days in Russian
+            const timeFormatted = `${String(hours).padStart(2, '0')}ч. ${String(minutes).padStart(2, '0')}мин. ${String(seconds).padStart(2, '0')}с.`; // Hours, Minutes, Seconds in Russian
+            document.getElementById('ageDisplay').innerText =
+            `${yearsFormatted} ${monthsFormatted} ${daysFormatted} ${timeFormatted}`;
 
-// Convert both dates to UTC
-const utcBirthDate = new Date(Date.UTC(birthDate.getFullYear(), birthDate.getMonth(), birthDate.getDate()));
-const utcNow = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds()));
-
-// Calculate the difference
-let years = utcNow.getUTCFullYear() - utcBirthDate.getUTCFullYear();
-let months = utcNow.getUTCMonth() - utcBirthDate.getUTCMonth();
-let days = utcNow.getUTCDate() - utcBirthDate.getUTCDate();
-let hours = utcNow.getUTCHours() - utcBirthDate.getUTCHours();
-let minutes = utcNow.getUTCMinutes() - utcBirthDate.getUTCMinutes();
-let seconds = utcNow.getUTCSeconds() - utcBirthDate.getUTCSeconds();
-
-// Adjust for negative values
-if (seconds < 0) { seconds += 60; minutes--; }
-if (minutes < 0) { minutes += 60; hours--; }
-if (hours < 0) { hours += 24; days--; }
-if (days < 0) {
-    months--;
-    days += new Date(Date.UTC(utcNow.getUTCFullYear(), utcNow.getUTCMonth(), 0)).getUTCDate();
-}
-if (months < 0) {
-    months += 12;
-    years--;
-}
-
-// Format the output
-const yearsFormatted = `${years} год`;
-const monthsFormatted = `${String(months).padStart(2, '0')} м.`;
-const daysFormatted = `${String(days).padStart(2, '0')} д.`;
-const timeFormatted = `${String(hours).padStart(2, '0')} ч. ${String(minutes).padStart(2, '0')} мин. ${String(seconds).padStart(2, '0')} с.`;
-document.getElementById('ageDisplay').innerText =
-    `${yearsFormatted} ${monthsFormatted} ${daysFormatted} ${timeFormatted}`;
-}
+        }
         // Update the age display every second
         updateAgeDisplay()
         setInterval(updateAgeDisplay, 1000);
-
     </script>
 
 </body>
